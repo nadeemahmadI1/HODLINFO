@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HODLINFO</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            text-align: left;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Add your theme-dark styles here */
+        .theme-dark {
+            position: relative;
+            background: #191d28;
+            /* min-height: 1h; */
+            color: #fff;
+            font-family: Oswald, sans-serif;
+        }
+
+        /* Flexbox container for the data row */
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .data-block {
+            text-align: center;
+        }
+
+        .percentage {
+            font-size: 24px;
+            color: green;
+            font-weight: bold;
+        }
+
+        .duration {
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Add your theme-dark styles here */
+        .theme-dark {
+            position: relative;
+            background: #191d28;
+            /* min-height: 100vh; */
+            color: #fff;
+            font-family: Oswald, sans-serif;
+        }
+
+        /* Add media queries for different screen sizes */
+        @media screen and (max-width: 415px) {
+            .average-header {
+                padding: 10px 0;
+            }
+        }
+
+        @media screen and (min-width: 416px) and (max-width: 768px) {
+            .average-header {
+                padding: 20px 0;
+            }
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 960px) {
+            .average-header {
+                padding: 25px 0;
+            }
+        }
+
+        @media screen and (min-width: 961px) {
+            .average-header {
+                padding: 30px 0;
+            }
+        }
+
+        /* Add remaining CSS for other classes (align-items-center, justify-content-around, d-flex) if needed */
+        .align-items-center {
+            align-items: center !important;
+        }
+
+        .justify-content-around {
+            justify-content: space-around !important;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+        *,
+        :after,
+        :before {
+            box-sizing: border-box;
+        }
+
+        .table-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .exchange-table {
+            border-collapse: collapse;
+            width: 30%;
+            margin: 10px;
+        }
+
+        .exchange-table th,
+        .exchange-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .exchange-table caption {
+            font-weight: bold;
+            text-align: center;
+            padding: 5px;
+            background-color: #4d6442;
+            border: 1px solid #ccc;
+        }
+
+        .buttons-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: black;
+            color: white;
+        }
+
+        h1 {
+            text-align: left;
+            color: rgb(9, 128, 120);
+            margin-top: 20px;
+            text-align: center;
+            font-family: Oswald, sans-serif;
+        }
+
+        /* Styles for dark theme */
+        .theme-dark {
+            background-color: #191d28;
+            color: #fff;
+        }
+
+        /* Styles for white theme */
+        .theme-white {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        #theme-toggle-button {
+            border: 2px solid greenyellow;
+            border-radius: 25px;
+            margin-left: 780px;
+            background-color: #4CAF50;
+            height: 20px;
+            width: 20px;
+
+        }
+
+        .table-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .exchange-table {
+            border-collapse: collapse;
+            width: 30%;
+            margin: 10px;
+        }
+
+        .exchange-table th,
+        .exchange-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* Style the button to give it a dropdown appearance */
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+
+        /* Style the dropdown content (hidden by default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #c7b6b6;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style the links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change the link color on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Show the dropdown content when the button is clicked */
+        .show {
+            display: block;
+        }
+
+        .dropdown {
+            justify-content: center;
+            border-radius: 25px;
+
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Add other CSS styles here */
+
+        .circle-container {
+            position: relative;
+            width: 20px;
+            height: 20px;
+        }
+
+        canvas {
+            position: absolute;
+            top: -12px;
+            left: 0px;
+            border-radius: 50%;
+            background-color: #bdb4bc;
+        }
+
+        #timer-text {
+            position: absolute;
+            top: 50%;
+            left: 24px;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            font-weight: bold;
+            color: rgb(9, 128, 120);
+
+            font-family: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>HODLINFO</h1>
+        <div class="circle-container">
+            <canvas id="countdown-canvas" width="45" height="45"></canvas>
+            <div id="timer-text"></div>
+        </div>
+        <button id="theme-toggle-button">&#9899</button>
+        <div class="theme-container">
+            <!-- Your content that you want to style based on the theme -->
+        </div>
+
+
+        <div class="dropdown">
+            <a target="_blank"
+                href="https://wazirx.com/invite/sp7pvbt6?utm_source=finstreet&amp;utm_medium=affiliate&amp;utm_campaign=regnow-btn"
+                type="button" aria-haspopup="true" aria-expanded="false" class="dropbtn">BUY BTC</a>
+            <button onclick="toggleDropdown()" class="dropbtn">BTC</button>
+            <div id="myDropdown" class="dropdown-content">
+                <option>BTC</option>
+                <option>RXP</option>
+                <option>TRX</option>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="theme-dark">
+        <div class="data-row">
+            <div class="data-block">
+                <div class="percentage">0.96 %</div>
+                <div class="duration">5 Mins</div>
+            </div>
+            <div class="data-block">
+                <div class="percentage">1.75 %</div>
+                <div class="duration">1 Hour</div>
+            </div>
+            <div class="data-block">
+                <div class="average-subText">
+                    <span class="subText-heading">Best Price to Trade</span>
+                </div>
+                <div class="average-heading">₹ 26,58,619</div>
+                <div class="average-subText">Average BTC/INR net price including commission</div>
+            </div>
+            <div class="data-block">
+                <div class="percentage">3.34 %</div>
+                <div class="duration">1 Day</div>
+            </div>
+            <div class="data-block">
+                <div class="percentage">10.17 %</div>
+                <div class="duration">7 Days</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <table class="exchange-table">
+            <caption>Top 5 Exchanges</caption>
+            <tr>
+                <th>Platform</th>
+                <th>Last Traded Price</th>
+                <th>Buy / Sell Price</th>
+                <th>Difference</th>
+                <th>Savings</th>
+            </tr>
+            <tr>
+                <td>WazirX</td>
+                <td>₹ 25,14,998</td>
+                <td>₹ 24,91,043 / ₹ 25,14,998</td>
+                <td>-4.53 %</td>
+                <td>▼ ₹ 1,19,463</td>
+            </tr>
+            <tr>
+                <td>Bitbns</td>
+                <td>₹ 31,11,608</td>
+                <td>₹ 31,11,608 / ₹ 31,50,233</td>
+                <td>18.11 %</td>
+                <td>▲ ₹ 4,77,147</td>
+            </tr>
+            <tr>
+                <td>Colodax</td>
+                <td>₹ 24,56,192</td>
+                <td>₹ 24,43,911 / ₹ 29,96,556</td>
+                <td>-6.77 %</td>
+                <td>▼ ₹ 1,78,268</td>
+            </tr>
+            <tr>
+                <td>Zebpay</td>
+                <td>₹ 25,40,000</td>
+                <td>₹ 25,40,000 / ₹ 25,17,000</td>
+                <td>-3.59 %</td>
+                <td>▼ ₹ 94,461</td>
+            </tr>
+            <tr>
+                <td>CoinDCX</td>
+                <td>₹ 25,49,507</td>
+                <td>₹ 25,22,100 / ₹ 25,49,507</td>
+                <td>-3.22 %</td>
+                <td>▼ ₹ 84,953</td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+    <p style="text-align: center;">Copyright © 2019 HodlInfo.com</p>
+    <p style="text-align: center;">Support</p>
+    <script>
+        // Get the canvas and context
+        const canvas = document.getElementById('countdown-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set the timer duration (60 seconds)
+        const timerDuration = 60;
+        let remainingSeconds = timerDuration;
+
+        // Function to draw the circle
+        function drawCircle() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 90;
+            const startAngle = Math.PI * 1.5;
+            const endAngle = (2 * Math.PI * remainingSeconds / timerDuration) + startAngle;
+
+            // Draw the circle
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, startAngle, endAngle, false);
+            ctx.lineWidth = 10;
+            ctx.strokeStyle = '#2196F3';
+            ctx.stroke();
+        }
+
+        // Function to update the timer text
+        function updateTimerText() {
+            document.getElementById('timer-text').innerText = remainingSeconds + ' seconds';
+        }
+
+        // Function to update the timer every second
+        function updateTimer() {
+            if (remainingSeconds > 0) {
+                remainingSeconds--;
+                drawCircle();
+                updateTimerText();
+            }
+        }
+
+        // Call the updateTimer function every second
+        setInterval(updateTimer, 1000);
+
+        // Get the theme toggle button element
+        const themeToggleButton = document.getElementById('theme-toggle-button');
+
+        // Add a click event listener to the button
+        themeToggleButton.addEventListener('click', function () {
+            // Get the body element
+            const body = document.body;
+
+            // Toggle the theme classes
+            body.classList.toggle('theme-dark');
+            body.classList.toggle('theme-white');
+        });
+
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("myDropdown");
+            dropdownContent.classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        };
+
+    </script>
+</body>
+
+</html>
